@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /uploads/{uploadId} {
+      allow read;
+      allow create: if false;
+      allow update: if false;
+    }
+
+    match /album/{albumId} {
+      allow read;
+      allow create: if false;
+      allow update: if false;
+    }
+
+    match /{document=**} {
+      allow read, write, update: if false;
+    }
+  }
+}

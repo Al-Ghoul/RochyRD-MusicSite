@@ -31,6 +31,8 @@
               yarn
               firefox-devedition
               nodePackages.dotenv-cli
+              firebase-tools
+              jdk
             ];
 
             pre-commit.hooks = {
