@@ -38,3 +38,6 @@ next-env.d.ts
 .pre-commit-config.yaml
 .devenv
 .direnv
+
+*-debug.log
+serviceAccountKey.json
