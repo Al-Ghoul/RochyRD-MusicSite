@@ -12,6 +12,7 @@
   "dependencies": {
     "@firebase/rules-unit-testing": "^3.0.1",
     "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "next": "^14.0.4",
@@ -19,6 +20,7 @@
     "react-dom": "^18.2.0",
     "string-width": "4",
     "strip-ansi": "3",
+    "swr": "^2.2.4",
     "wrap-ansi": "3",
     "zod": "^3.22.4"
   },

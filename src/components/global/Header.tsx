@@ -1,13 +1,18 @@
 "use client";
 import { Navbar } from "flowbite-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const paths = usePathname().split("/");
+  const currentActiveRoute = paths[paths.length - 1];
+
   return (
     <Navbar
       fluid={true}
       rounded={true}
     >
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/" as={Link}>
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           RochyRD
         </span>
@@ -15,32 +20,18 @@ export default function Header() {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Navbar.Link
-          href="/navbars"
-          active={true}
+          href="/"
+          active={currentActiveRoute == ""}
+          as={Link}
         >
           Home
         </Navbar.Link>
         <Navbar.Link
-          href="/navbars"
+          href="/albums"
+          active={currentActiveRoute == "albums"}
           className="flex flex-row"
+          as={Link}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"
-            />
-          </svg>
-          Music
-        </Navbar.Link>
-        <Navbar.Link href="/navbars" className="flex flex-row">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="black"
@@ -53,6 +44,13 @@ export default function Header() {
             </path>
           </svg>
           Albums
+        </Navbar.Link>
+        <Navbar.Link
+          href="/upload"
+          active={currentActiveRoute == "upload"}
+          as={Link}
+        >
+          Upload
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
