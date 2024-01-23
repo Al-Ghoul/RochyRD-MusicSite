@@ -2,13 +2,13 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /uploads/{uploadId} {
+    match /songs/{songId} {
       allow read;
       allow create: if false;
       allow update: if false;
     }
 
-    match /album/{albumId} {
+    match /albums/{albumId} {
       allow read;
       allow create: if false;
       allow update: if false;
