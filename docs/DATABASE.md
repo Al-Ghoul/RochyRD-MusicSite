@@ -4,9 +4,9 @@ The following diagram reflects the database schema:
 %%{init: {'theme':'dark'}}%%
 erDiagram
 
-ALBUM ||--o{ UPLOAD : has
+ALBUM ||--o{ SONG : has
 
-UPLOAD {
+SONG {
     string id
     string title
     string description
