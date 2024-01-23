@@ -40,3 +40,4 @@ next-env.d.ts
 .direnv
 
 *-debug.log
+serviceAccountKey.json

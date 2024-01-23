@@ -51,14 +51,14 @@ describe("RichyRD-Site Rules Test Suite", () => {
 
   test("Should NOT be able to create a new upload", async () => {
     const db = testEnv.unauthenticatedContext().firestore();
-    const uploadRecord = db.collection("uploads").doc("NameDoesNotMatter");
+    const songRecord = db.collection("songs").doc("NameDoesNotMatter");
 
-    await expectFirestorePermissionDenied(uploadRecord.set({}));
+    await expectFirestorePermissionDenied(songRecord.set({}));
   });
 
   test("Anyone should be able to read albums", async () => {
     const db = testEnv.unauthenticatedContext().firestore();
-    const albumRecord = db.collection("albums").doc(
+    const albumRec = db.collection("albums").doc(
       "newAlbumNameDoesNotMatter",
     );
     await testEnv.withSecurityRulesDisabled(async (adminContext) => {
@@ -75,20 +75,20 @@ describe("RichyRD-Site Rules Test Suite", () => {
       });
     });
 
-    expectPermissionGetSucceeds(albumRecord.get());
+    await expectPermissionGetSucceeds(albumRec.get());
   });
 
-  test("Anyone should be able to read uploads", async () => {
+  test("Anyone should be able to read songs", async () => {
     const db = testEnv.unauthenticatedContext().firestore();
-    const uploadRecord = db.collection("uploads").doc(
+    const uploadRec = db.collection("songs").doc(
       "newUploadNameDoesNotMatter",
     );
     await testEnv.withSecurityRulesDisabled(async (adminContext) => {
       const db = adminContext.firestore();
-      const uploadRecord = db.collection("uploads").doc(
+      const songRecord = db.collection("songs").doc(
         "newUploadNameDoesNotMatter",
       );
-      await uploadRecord.set({
+      await songRecord.set({
         id: "uploadId",
         title: "newUploadTitle",
         description: "This is just a simple description",
@@ -98,6 +98,6 @@ describe("RichyRD-Site Rules Test Suite", () => {
       });
     });
 
-    expectPermissionGetSucceeds(uploadRecord.get());
+    expectPermissionGetSucceeds(uploadRec.get());
   });
 });

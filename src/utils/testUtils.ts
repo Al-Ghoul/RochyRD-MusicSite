@@ -10,6 +10,8 @@ export async function expectFirestorePermissionDenied(promise: Promise<void>) {
   expect(errorResult.code).toBe("permission-denied" || "PERMISSION_DENIED");
 }
 
-export function expectPermissionGetSucceeds(promise: Promise<void>) {
-  expect(assertSucceeds(promise)).not.toBeUndefined();
+// deno-lint-ignore no-explicit-any
+export async function expectPermissionGetSucceeds(promise: Promise<any>) {
+  const res = await assertSucceeds(promise);
+  expect(res.data()).not.toBeUndefined();
 }
