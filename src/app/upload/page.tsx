@@ -1,6 +1,8 @@
 import { CreateAlbumForm, CreateSongForm } from "@/components/forms";
 import { getBaseUrl } from "@/utils/helpers";
 
+export const revalidate = 3600;
+
 export default async function UploadPage() {
   const { albums } = await getAlbums();
 
@@ -13,10 +15,12 @@ export default async function UploadPage() {
 }
 
 async function getAlbums() {
-  const res = await fetch(`${getBaseUrl()}/api/albums/`, {
+  const res = await fetch(`${getBaseUrl()}/api/albums`, {
     next: { tags: ["albumsData"] },
   });
-  if (!res.ok) throw new Error("Failed to fetch data");
+
+  if (!res.ok) return { albums: [] };
+
   return res.json() as Promise<{
     albums: Array<Album>;
   }>;
