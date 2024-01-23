@@ -30,8 +30,8 @@ export function initFbAdmin() {
     return admin.app();
   }
 
-  const serviceAccount = process.env.IGNORE_SERVICE_ACCOUNT_KEY
-    ? null
+  const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
+    ? process.env.FIREBASE_SERVICE_ACCOUNT_KEY
     : require("../../serviceAccountKey.json");
 
   return admin.initializeApp({
