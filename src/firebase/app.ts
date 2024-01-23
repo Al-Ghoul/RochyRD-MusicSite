@@ -30,9 +30,7 @@ export function initFbAdmin() {
     return admin.app();
   }
 
-  const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-    ? process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-    : require("../../serviceAccountKey.json");
+  const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY!;
 
   return admin.initializeApp({
     projectId: "rochyrd-music",
