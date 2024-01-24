@@ -30,13 +30,22 @@ export function initFbAdmin() {
     return admin.app();
   }
 
-  const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY!;
+  const privateKey = process.env.FIREBASE_SERVICE_PRIVATE_KEY!.replace(
+    /\\n/g,
+    "\n",
+  );
 
   return admin.initializeApp({
-    projectId: "rochyrd-music",
-    credential: serviceAccount === null
+    projectId: firebaseConfig.projectId,
+    credential: privateKey === null
       ? admin.credential.applicationDefault()
-      : admin.credential.cert(serviceAccount),
+      : admin.credential.cert(
+        {
+          projectId: firebaseConfig.projectId,
+          privateKey,
+          clientEmail: process.env.FIREBASE_SERVICE_CLIENT_EMAIL,
+        },
+      ),
     storageBucket: "rochyrd-music.appspot.com",
   });
 }

@@ -79,7 +79,7 @@
 
             buildPhase = ''
               runHook preBuild
-              dotenv -v FIREBASE_SERVICE_ACCOUNT_KEY="ignoreIt" yarn --offline build
+              dotenv -v FIREBASE_SERVICE_PRIVATE_KEY="ignoreIt" yarn --offline build
               runHook postBuild
             '';
 
