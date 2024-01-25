@@ -52,9 +52,9 @@ export default function SongsSection() {
           return (
             <div
               key={song.id}
-              className="min-w-80 rounded-lg shadow-md bg-gray-500"
+              className="rounded-lg shadow-md bg-gray-500"
             >
-              <div className="flex items-center p-4">
+              <div className="flex flex-col md:flex-row items-center p-4">
                 <Image
                   alt={song.description}
                   className="object-cover w-16 h-16 rounded-full mr-4"
@@ -72,7 +72,7 @@ export default function SongsSection() {
                 </div>
                 <Link
                   href={song.url}
-                  className="ml-auto bg-green-500 p-1 rounded"
+                  className="mx-auto bg-green-500 p-1 rounded"
                 >
                   Download
                 </Link>
