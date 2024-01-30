@@ -1,5 +1,5 @@
 {
-  description = "NextJS development environment";
+  description = "NextJS Dev, Build & CI/CD env.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -27,7 +27,7 @@
           ({ ... }: {
 
             packages = [
-              nodejs # For neovim's LSP (Remove it if you're not using neovim)
+              nodejs
               yarn
               firefox-devedition
               nodePackages.dotenv-cli

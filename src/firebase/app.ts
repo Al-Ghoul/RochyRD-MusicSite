@@ -1,8 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import admin from "firebase-admin";
-import { connectStorageEmulator, getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFU56TOvCBxW8jgnVIqXL9WgjBYsyAD34",
@@ -16,13 +14,9 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
 
 if (process.env.NODE_ENV === "development") {
   connectFirestoreEmulator(db, "localhost", 8080);
-  connectAuthEmulator(auth, "http://localhost:9099");
-  connectStorageEmulator(storage, "localhost", 9199);
 }
 
 export function initFbAdmin() {
