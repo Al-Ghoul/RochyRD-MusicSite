@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function AlbumsSection() {
   const params = useSearchParams();
-  const queryLimit = params.get("limitBy") || 2;
+  const queryLimit = params.get("limitBy") || 8;
   const startAfterDocId = params.get("startAfterDocId") || "";
   const endBeforeDocId = params.get("endBeforeDocId");
   const additionalParam = endBeforeDocId

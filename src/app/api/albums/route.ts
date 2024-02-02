@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
     }
     albums = (await getDocs(finalQuery)).docs.map((album) => album.data());
     let has_next = false;
-    if (albums.length > 2) {
+    if (albums.length > limitBy) {
       albums.pop();
       has_next = true;
     }
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
 
     albums = (await getDocs(finalQuery)).docs.map((album) => album.data());
     let has_prev = false;
-    if (albums.length > 2) {
+    if (albums.length > limitBy) {
       albums.shift();
       has_prev = true;
     }
@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
     finalQuery = query(albumsCollection, queryOrderBy, limit(limitBy + 1));
     albums = (await getDocs(finalQuery)).docs.map((album) => album.data());
     let has_next = false;
-    if (albums.length > 2) {
+    if (albums.length > limitBy) {
       albums.pop();
       has_next = true;
     }

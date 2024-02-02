@@ -17,7 +17,7 @@ const albumInputSchema = z.object({
 });
 
 export async function createAlbum(
-  _prevState: { errorMessage: string; success: boolean },
+  _prevState: { message: string; success: boolean },
   formData: FormData,
 ) {
   const inputFields = albumInputSchema.safeParse({
@@ -28,7 +28,7 @@ export async function createAlbum(
 
   if (!inputFields.success) {
     return {
-      errorMessage: "Please check all fields",
+      message: "Please check all fields",
       success: false,
     };
   }
@@ -64,7 +64,7 @@ export async function createAlbum(
   revalidateTag("albumsData");
 
   return {
-    errorMessage: "",
+    message: "Album was added successfully.",
     success: true,
   };
 }
@@ -87,7 +87,7 @@ const songInputSchema = z.object({
 );
 
 export async function createSong(
-  _prevState: { errorMessage: string } | undefined,
+  _prevState: { message: string; success: boolean },
   formData: FormData,
 ) {
   const inputFields = songInputSchema.safeParse({
@@ -101,7 +101,7 @@ export async function createSong(
 
   if (!inputFields.success) {
     return {
-      errorMessage: "Please check all fields",
+      message: "Please check all fields",
       success: false,
     };
   }
@@ -113,7 +113,7 @@ export async function createSong(
       .get()).docs[0]?.data() as Album;
   if (inputFields.data.albumId && !album) {
     return {
-      errorMessage: "Album does NOT exist",
+      message: "Album does NOT exist",
       success: false,
     };
   }
@@ -158,7 +158,7 @@ export async function createSong(
   });
 
   return {
-    errorMessage: "",
+    message: "Song was added successfully.",
     success: true,
   };
 }

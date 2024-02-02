@@ -5,7 +5,7 @@ import SubmitButton from "./SubmitButton";
 import { useEffect, useState } from "react";
 
 const initialState = {
-  errorMessage: "",
+  message: "",
   success: false,
 };
 
@@ -57,8 +57,13 @@ export const CreateAlbumForm = () => {
         </label>
         <SubmitButton />
       </form>
-      {createAlbumState?.errorMessage.length
-        ? <p className="text-red-500">{createAlbumState.errorMessage}</p>
+
+      {(!createAlbumState.success && createAlbumState?.message.length)
+        ? <p className="text-red-500">{createAlbumState.message}</p>
+        : null}
+
+      {(createAlbumState.success && createAlbumState.message.length)
+        ? <p className="text-green-500">{createAlbumState.message}</p>
         : null}
     </div>
   );
@@ -141,8 +146,13 @@ export const CreateSongForm = ({ albums }: {
         </label>
         <SubmitButton />
       </form>
-      {createSongState?.errorMessage.length
-        ? <p className="text-red-500">{createSongState.errorMessage}</p>
+
+      {(!createSongState.success && createSongState?.message.length)
+        ? <p className="text-red-500">{createSongState.message}</p>
+        : null}
+
+      {(createSongState.success && createSongState.message.length)
+        ? <p className="text-green-500">{createSongState.message}</p>
         : null}
     </div>
   );
